@@ -1,0 +1,56 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: service_a
+  lifecycle:
+    # this is the timeout time for graceful shutdown. During any change, we need to reconsider `terminationGracePeriodSeconds`.
+    timeout-per-shutdown-phase: 30s
+    #---------------------------------------------------------------------------------------------------------------------
+    # This properties should be overridden using config file from a relevant context(e.g. staging or prod)
+    # cluster config-map or secret
+    #---------------------------------------------------------------------------------------------------------------------
+  cloud:
+    consul:
+      discovery:
+        instance-id: ${spring.application.name}:${random.value}
+        prefer-ip-address: true
+        health-check-path: /actuator/health
+      host: ${HOST_IP:localhost}
+      port: 8500
+  datasource:
+    url: jdbc:mysql://localhost:30306/apm
+    username: root
+    password: My:S3cr3t/
+#management:
+#  tracing:
+#    enabled: true
+#    sampling:
+#      probability: 1.0
+#  endpoints:
+#    web:
+#      exposure:
+#        include: health,prometheus
+#  endpoint:
+#    health:
+#      probes:
+#        enabled: true
+#  health:
+#    mail:
+#      enabled: false
+#    livenessState:
+#      enabled: true
+#    readinessState:
+#      enabled: true
+#
+#therapconnect:
+#  app-info:
+#    hostname: "localhost"
+#    servername: "gateway-service"
+#  auth:
+#    jwt:
+#      base64secret: Y2k4RzdKanQ1bWdTZEFmOU5DWFEzQyZUQFIhN0dMcyZpaWEmZkVLaXk0RUJONnhBOGlhRUpEejgzZyNYaGtHSg==
+#      id-token-expiry-min: 30
+#      access-token-expiry-min: 30
+#      refresh-token-expiry-min: 60

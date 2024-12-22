@@ -1,0 +1,5 @@
+rootProject.name = 'apm'
+
+include "gateway"
+include "service_a"
+include "service_b"
