@@ -1,8 +1,9 @@
 server:
-  port: 8080
+  port: 8082
+
 spring:
   application:
-    name: gateway
+    name: service_b
   lifecycle:
     # this is the timeout time for graceful shutdown. During any change, we need to reconsider `terminationGracePeriodSeconds`.
     timeout-per-shutdown-phase: 30s
@@ -11,19 +12,6 @@ spring:
     # cluster config-map or secret
     #---------------------------------------------------------------------------------------------------------------------
   cloud:
-    gateway:
-      discovery:
-        locator:
-          enabled: true
-      routes:
-        - id: service-a
-          uri: lb://service-a/
-          predicates:
-            - Path=/serviceA/**
-        - id: service-b
-          uri: lb://service-b/
-          predicates:
-            - Path=/serviceB/**
     consul:
       discovery:
         instance-id: ${spring.application.name}:${random.value}
@@ -31,7 +19,10 @@ spring:
         health-check-path: /actuator/health
       host: ${HOST_IP:localhost}
       port: 8500
-
+  datasource:
+    url: jdbc:mysql://localhost:30306/apm
+    username: root
+    password: My:S3cr3t/
 #management:
 #  tracing:
 #    enabled: true

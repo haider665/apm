@@ -30,6 +30,9 @@ dependencies {
 	implementation "org.springframework.boot:spring-boot-starter-actuator"
 
 	implementation "org.springframework.cloud:spring-cloud-starter-gateway"
+	// https://mvnrepository.com/artifact/co.elastic.apm/apm-agent-attach
+	compileOnly group: 'co.elastic.apm', name: 'apm-agent-attach', version: '1.52.1'
+
 }
 
 tasks.named('test') {
