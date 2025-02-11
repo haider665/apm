@@ -30,7 +30,7 @@ dependencies {
 
     // https://mvnrepository.com/artifact/co.elastic.apm/apm-agent-attach
     compileOnly group: 'co.elastic.apm', name: 'apm-agent-attach', version: '1.52.1'
-
+    compileOnly "co.elastic.apm:apm-agent-api:1.52.1"
 }
 
 tasks.named('test') {

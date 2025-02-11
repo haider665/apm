@@ -10,7 +10,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 public class ServiceBApplication {
 
     public static void main(String[] args) {
-        ElasticApmAttacher.attach();
+//        ElasticApmAttacher.attach();
         SpringApplication.run(ServiceBApplication.class, args);
     }
 
