@@ -19,6 +19,7 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
@@ -30,7 +31,10 @@ dependencies {
 
     // https://mvnrepository.com/artifact/co.elastic.apm/apm-agent-attach
     compileOnly group: 'co.elastic.apm', name: 'apm-agent-attach', version: '1.52.1'
-    compileOnly "co.elastic.apm:apm-agent-api:1.52.1"
+//    implementation "co.elastic.apm:apm-agent-api:1.52.1"
+    // https://mvnrepository.com/artifact/co.elastic.apm/apm-agent-api
+    implementation group: 'co.elastic.apm', name: 'apm-agent-api', version: '1.52.1'
+
 }
 
 tasks.named('test') {

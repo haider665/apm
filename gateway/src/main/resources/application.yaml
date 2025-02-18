@@ -1,6 +1,8 @@
 server:
   port: 8080
 spring:
+  main:
+    web-application-type: reactive
   application:
     name: gateway
   lifecycle:
@@ -20,6 +22,8 @@ spring:
           uri: lb://service-a/
           predicates:
             - Path=/serviceA/**
+          filters:
+            - CustomGatewayFilter
         - id: service-b
           uri: lb://service-b/
           predicates:
